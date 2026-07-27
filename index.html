@@ -9,7 +9,7 @@
 </head>
 <body class="home-bg text-white">
     <head>
-        <div class="pl-10 pt-5"><img src="src/img/logo.png" alt=""></div>
+        <div class="pl-10 pt-5"><img src="src/img/logo.png" alt="logo" class="w-15"></div>
     </head>
     <section class="hidden">
        <div class="w-[50%] m-auto text-center mt-[5%]">
@@ -24,7 +24,7 @@
     
     <!-- logins -->
 <section>
-    <div class="w-[50%] m-auto text-center border-4 border-[#535151de] rounded-2xl p-5 space-y-10">
+    <div class="w-[50%] m-auto text-center shadow-2xl border-4 border-[#535151de] rounded-2xl p-5 bg-[#000000b7] space-y-10">
         <div>
             <h1 class="font-black text-5xl pb-2 text-red-500">Login to start</h1>
         <p class="text-red-200"><i>Dear valued Customer, enter your details to continue</i></p>
@@ -34,8 +34,22 @@
             
             <input type="email" name="email" placeholder="Enter your email" class="w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]"><br>
 
+            <div>
             <input type="password" name="pass" placeholder="Enter your password" class="w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]">
+
+             <div class="text-sm flex justify-center gap-24">
+            <p><a href="#" class="text-blue-400">forgotten password?</a></p>
+
+            <div class="flex items-center ">
+                <input type="checkbox" name="" id="check"><label for="check">Remind me</label>
+            </div>
+            </div>
+
+        </div>
+
+            <input type="submit" value="Login" id="" class="w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe] rounded-3xl bg-[#a71010ac] hover:bg-[#a71010ce] hover:transition">
         </form>
+       
     </div>
 </section>
 
