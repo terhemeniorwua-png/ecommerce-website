@@ -186,29 +186,11 @@
   }
 }
 @layer utilities {
-  .m-5 {
-    margin: calc(var(--spacing) * 5);
-  }
   .m-auto {
     margin: auto;
   }
-  .mt-\[4\%\] {
-    margin-top: 4%;
-  }
-  .mt-\[20\%\] {
-    margin-top: 20%;
-  }
-  .mt-\[25\%\] {
-    margin-top: 25%;
-  }
   .mt-\[35\%\] {
     margin-top: 35%;
-  }
-  .mt-\[40\%\] {
-    margin-top: 40%;
-  }
-  .mt-\[45\%\] {
-    margin-top: 45%;
   }
   .ml-\[5\%\] {
     margin-left: 5%;
@@ -225,35 +207,14 @@
   .hidden {
     display: none;
   }
-  .table {
-    display: table;
-  }
-  .h-\[100vh\] {
-    height: 100vh;
-  }
-  .h-\[120\] {
-    height: 120;
-  }
-  .h-\[120vh\] {
-    height: 120vh;
-  }
   .h-screen {
     height: 100vh;
   }
   .w-15 {
     width: calc(var(--spacing) * 15);
   }
-  .w-\[50\%\] {
-    width: 50%;
-  }
   .w-full {
     width: 100%;
-  }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
   }
   .items-center {
     align-items: center;
@@ -266,9 +227,6 @@
   }
   .gap-10 {
     gap: calc(var(--spacing) * 10);
-  }
-  .gap-24 {
-    gap: calc(var(--spacing) * 24);
   }
   :where(.space-y-10 > :not(:last-child)) {
     --tw-space-y-reverse: 0;
@@ -307,12 +265,6 @@
   .pt-5 {
     padding-top: calc(var(--spacing) * 5);
   }
-  .pt-\[10\%\] {
-    padding-top: 10%;
-  }
-  .pt-\[10\] {
-    padding-top: 10;
-  }
   .pt-\[20\%\] {
     padding-top: 20%;
   }
@@ -340,17 +292,9 @@
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
   }
-  .text-5xl {
-    font-size: var(--text-5xl);
-    line-height: var(--tw-leading, var(--text-5xl--line-height));
-  }
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
-  }
-  .text-xl {
-    font-size: var(--text-xl);
-    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .font-black {
     --tw-font-weight: var(--font-weight-black);
@@ -407,20 +351,8 @@
     .max-md\:m-5 {
       margin: calc(var(--spacing) * 5);
     }
-    .max-md\:m-10 {
-      margin: calc(var(--spacing) * 10);
-    }
-    .max-md\:px-\[2\%\] {
-      padding-inline: 2%;
-    }
     .max-md\:px-\[3\%\] {
       padding-inline: 3%;
-    }
-    .max-md\:px-\[5\%\] {
-      padding-inline: 5%;
-    }
-    .max-md\:px-\[5\] {
-      padding-inline: 5;
     }
   }
   @media (width >= 48rem) {

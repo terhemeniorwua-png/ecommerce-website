@@ -3,6 +3,8 @@
 
 // let logo = document.querySelector('.img')
 let customer = document.querySelector('.customer');
+let forgPass = document.querySelectorAll('.forgPass');
+let passRecovery = document.querySelector('.passRecovery')
 let landingPage = document.querySelector('.landingPage')
 let admin = document.querySelector('.admin');
 let customerLogin = document.querySelector('.customerLogin');
@@ -34,4 +36,18 @@ admin.addEventListener('click', ()=>{
         adminLogin.classList.add('block')
         landingPage.classList.add('hidden')
     }
+})
+
+let pages = [customerLogin,adminLogin]
+
+forgPass.addEventListener('click', ()=>{
+  pages.forEach(page =>{
+    if(page.classList.contains('block')){
+        page.classList.remove('block');
+    page.classList.add('hidden')
+    }
+  });
+
+  passRecovery.classList.remove('hidden');
+  passRecovery.classList.add('block')
 })

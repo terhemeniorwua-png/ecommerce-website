@@ -45,7 +45,7 @@
             <input type="password" name="pass" placeholder="Enter your password" class="md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]">
 
              <div class="text-sm flex justify-center gap-5 md:gap-24">
-            <p><a href="#" class="text-blue-400">forgotten password?</a></p>
+            <p class="forgPass"><a href="#" class="text-blue-400 ">forgotten password?</a></p>
 
             <div class="flex items-center ">
                 <input type="checkbox" name="" id="check"><label for="check">Remind me</label>
@@ -78,7 +78,7 @@
 
 
              <div class="text-sm flex justify-center gap-5 md:gap-24">
-            <p><a href="#" class="text-blue-400">forgotten password?</a></p>
+            <p class="forgPass"><a href="#" class="text-blue-400 ">forgotten password?</a></p>
 
             <div class="flex items-center ">
                 <input type="checkbox" name="" id="check"><label for="check">Remind me</label>
@@ -114,7 +114,7 @@
             <p class="hidden text-red-500 italic text-sm">password must be 8-12 charcters long, (#,-,_,$) are also allowed</p>
 
              <div class="text-sm flex justify-center gap-5 md:gap-24">
-            <p><a href="#" class="text-blue-400">forgotten password?</a></p>
+            <p class="forgPass"><a href="#" class="text-blue-400 ">Already have an account?</a></p>
 
             <div class="flex items-center ">
                 <input type="checkbox" name="" id="check"><label for="check">Remind me</label>
@@ -127,7 +127,26 @@
         </form>
        
     </div>
+
+
+    <!-- Password recovery section -->
+
+
+    <div class="passRecovery hidden max-md:m-5 md:w-[50%] m-auto text-center shadow-2xl border-4 border-[#535151de] rounded-2xl p-5 bg-[#000000b7] space-y-10 ">
+        <div>
+            <h1 class="font-black text-3xl md:text-5xl pb-2 text-red-500">Recover Password</h1>
+        <p class="text-red-200"><i>Enter your email to recover your password</i></p>
+        </div>
+            
+            <input type="email" name="email" placeholder="Enter your email" class="md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]"><br>
+
+            <input type="submit" value="Submit" id="" class="w-full md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe] rounded-3xl bg-[#a71010ac] hover:bg-[#a71010ce] hover:transition">
+        </form>
+       
+    </div>
  </section>
+
+
 
 
     <script src="script.js"></script>
