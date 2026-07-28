@@ -87,6 +87,10 @@ return reponse
 }
 }
 
+
+export{fetchProducts}
+
+
 const uniqueProduct = new Set()
 
 fetchProducts().then(res =>{
@@ -118,34 +122,15 @@ fetchProducts().then(res =>{
                   <span>${product.rating}</span>
                 </div>
               
-                <p class="text-3xl"><b>${product.price}</b></p>
+                <p class="text-3xl"><b>$${product.price}</b></p>
                 <span></span>
                 <button class="bg-blue-600 w-full rounded-2xl m-auto py-2 text-white font-bold">View Details</button>
             </div>
         </div>
         `
    })
+
 });
 
 
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const openBtn = document.getElementById('openSidebar');
-  const closeBtn = document.getElementById('closeSidebar');
-
-  function openSidebar() {
-    sidebar.classList.remove('-translate-x-full');
-    overlay.classList.remove('hidden');
-  }
-  function closeSidebar() {
-    sidebar.classList.add('-translate-x-full');
-    overlay.classList.add('hidden');
-  }
-
- if(openBtn){
-     openBtn.addEventListener('click', openSidebar);
- }
-  if(closeBtn){
-    closeBtn.addEventListener('click', closeSidebar);
-  }
-  if(overlay){overlay.addEventListener('click', closeSidebar);}
+  
