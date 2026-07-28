@@ -51,3 +51,32 @@ forgPass.addEventListener('click', ()=>{
   passRecovery.classList.remove('hidden');
   passRecovery.classList.add('block')
 })
+
+// Dialog box
+let dialogbox = document.querySelector('.dialog');
+let dialogHeading = document.querySelector('.heading');
+let dialogMssg = document.querySelector('.erromssg');
+let cancelBtn = document.querySelector('.cancelBtn')
+
+// saving categories in the dashbord
+let categories = document.querySelector('.nav');
+
+const fetch = async ()=>{
+    try{
+
+    let fetchApi =await fetch('https://dummyjson.com/products');
+
+if(!fetchApi.ok){
+    throw new Error('An error occured while fetching response')
+}
+let reponse = await fetchApi.json()
+return reponse
+} catch(e){
+    dialogHeading.innerText = 'Error';
+    dialogMssg.innerText = e.message;
+    dialogbox.showModal()
+    cancelBtn.close()
+}
+}
+
+fetch()
