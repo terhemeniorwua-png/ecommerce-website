@@ -15,7 +15,7 @@
 
 
     <!-- Desktop Header -->
-<header class="max-md:hidden bg-white rounded-2xl shadow-md px-8 py-4 flex items-center justify-between">
+<header class="max-md: bg-white rounded-2xl shadow-md px-8 py-4 flex items-center justify-between">
 
     <!-- Logo -->
     <div class="flex items-center gap-3">
@@ -40,25 +40,25 @@
             <option>Beauty</option>
         </select>
 
-        <input type="text" placeholder="Search for products..."
+        <input type="text" placeholder="SearchInput for products..."
             class="flex-1 border border-gray-200 py-2 px-4 outline-none">
 
         <button
-            class="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-r-lg transition">
+            class="searchBtn bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-r-lg transition">
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
 
     </div>
 
     <!-- Right Side -->
-    <div class="flex items-center gap-10">
+    <!-- <div class="flex items-center gap-10"> -->
 
         <!-- Cart -->
-        <div class="flex items-center gap-2 relative cursor-pointer">
+        <!-- <div class="flex items-center gap-2 relative cursor-pointer"> -->
 
             <!-- cart quantity -->
-            <span class="absolute -top-2 left-3 w x-5 h-5 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center">
-               
+            <!-- <span class="absolute -top-6 left-10 p-3 py-4 h-5 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center">
+               0
             </span>
 
             <i class="fa-solid fa-cart-shopping text-2xl text-gray-700"></i>
@@ -67,10 +67,10 @@
                 Cart
             </p>
 
-        </div>
+        </div> -->
 
         <!-- Profile -->
-        <div class="flex items-center gap-2 cursor-pointer">
+        <!-- <div class="flex items-center gap-2 cursor-pointer">
 
             <i class="fa-regular fa-user text-2xl text-gray-700"></i>
 
@@ -80,7 +80,7 @@
 
         </div>
 
-    </div>
+    </div> -->
 
 </header>
 
@@ -122,7 +122,7 @@
 
 
 
-          <dialog class="dialog mt-20 w-[50%] shadow-2xl border border-amber-800 m-auto text-center py-20">
+          <dialog class="dialog mt-36 w-[50%] shadow-2xl border border-amber-800 m-auto text-center py-20">
             <h1 class="text-5xl heading">Error</h1>
             <p class="erromssg pt-5 text-xl"></p>
 
@@ -135,7 +135,7 @@
 </main>
 
 
-    <script type="module" src="customer.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
 

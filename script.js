@@ -83,18 +83,21 @@ return reponse
     dialogHeading.innerText = 'Error';
     dialogMssg.innerText = e.message;
     dialogbox.showModal()
+    cancelBtn.addEventListener('click', ()=>{
+
     dialogbox.close()
+    })
 }
 }
 
 
-export{fetchProducts}
 
+
+let products = document.querySelector('.products')
 
 const uniqueProduct = new Set()
 
 fetchProducts().then(res =>{
-    console.log(res)
 
    res.products.forEach(product =>{
    if(!uniqueProduct.has(product.category)){
@@ -108,9 +111,9 @@ fetchProducts().then(res =>{
 
 
   res.products.forEach(product=>{
-    document.querySelector('.products').innerHTML += `  <div>
+    products.innerHTML += `  <div>
             <div class="relative shadow-2xl">
-                <img src="${product.images}" alt=""><span class="absolute top-0 left-3 text-2xl"><i class="fa-regular fa-heart"></i></span>
+                <img src="${product.thumbnail}" alt=""><span class="absolute top-0 left-3 text-2xl"><i class="fa-regular fa-heart"></i></span>
             </div>
             <div class="pt-5 px-5 space-y-5">
                 <h3 class="font-bold">${product.title}</h3>
@@ -122,9 +125,9 @@ fetchProducts().then(res =>{
                   <span>${product.rating}</span>
                 </div>
               
-                <p class="text-3xl"><b>$${product.price}</b></p>
-                <span></span>
-                <button class="bg-blue-600 w-full rounded-2xl m-auto py-2 text-white font-bold">View Details</button>
+                <p class="text-3xl inline pr-20"><b>$${product.price}</b></p>
+                <span class="text-green-400">${product.availabilityStatus}</span>
+                <button class="bg-blue-600 w-full rounded-2xl m-auto py-2 text-white font-bold"><a href="product.html">View Details</a></button>
             </div>
         </div>
         `
@@ -132,5 +135,57 @@ fetchProducts().then(res =>{
 
 });
 
+let searchBtn = document.querySelector('.searchBtn');
+let SearchInput = document.querySelector('.SearchInput');
 
+const searchFetched = async ()=>{
+
+    let value = SearchInput.value.trim()
+    if(value === '')return;
+
+    try{
+        let fetchRequest = await fetch(`https://dummyjson.com/products/search?=${value}`);
+        let result = await fetchRequest.json()
+      displayProducts(result.product)
+
+    } catch(e){
+    dialogHeading.innerText = 'Error';
+    dialogMssg.innerText = e.message;
+    dialogbox.showModal()
+    
+     cancelBtn.addEventListener('click', ()=>{
+
+    dialogbox.close()
+    })
+}
+    
+}
+
+
+function displayProducts(prod) {
+    products.innerHTML = "";
+
+    if (prod.length === 0) {
+        productsContainer.innerHTML = "<h2>No product found.</h2>";
+        return;
+    }
+
+    prod.forEach(product => {
+        products.innerHTML += `
+            <div class="card">
+                <img src="${prod.thumbnail}" width="150">
+                <h3>${prod.title}</h3>
+                <p>$${prod.price}</p>
+            </div>
+        `;
+    });
+}
+
+
+//  searchBtn.addEventListener('click', searchFetched)
+
+
+
+
+export{fetchProducts}
   
