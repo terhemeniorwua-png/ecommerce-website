@@ -12,7 +12,10 @@
 
 <body class="bg-gray-100 p-8">
 
-<header class="bg-white rounded-2xl shadow-md px-8 py-4 flex items-center justify-between">
+
+
+    <!-- Desktop Header -->
+<header class="max-md:hidden bg-white rounded-2xl shadow-md px-8 py-4 flex items-center justify-between">
 
     <!-- Logo -->
     <div class="flex items-center gap-3">
@@ -92,13 +95,13 @@
         </ul>
     </div>
 
-    <section class="grid grid-cols-2 items-center">
-        <div class="leading-10 px-[5%]">
-            <h1 class="font-bold text-6xl">Discover Amazing Products</h1>
+    <section class="md:grid grid-cols-2 items-center">
+        <div class="md:leading-10 md:px-[5%]">
+            <h1 class="font-bold text-3xl md:text-6xl">Discover Amazing Products</h1>
 
             <p class="py-5 w-[60%]">Find the best products at the best prices. Quantity you can trust</p>
 
-            <button class="bg-blue-600 text-white px-4 rounded-md">Shope Now</button>
+            <button class="bg-blue-600 text-white max-md:py-2 px-4 rounded-md">Shope Now</button>
         </div>
         <div>
             <img src="src/img/Pasted image.png" alt="" class="w-full">
@@ -110,7 +113,7 @@
 
     <section>
         <h1 class="font-black text-3xl pb-5">Popular Products</h1>
-     <div class="products grid grid-cols-4 gap-10"></div>
+     <div class="products md:grid grid-cols-4 items-center md:gap-10"></div>
     </section>
 
 

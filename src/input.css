@@ -9,6 +9,17 @@
     --font-quicksand: "Quicksand", sans-serif;
 }
 
+  body { 
+    font-family: 'Inter', sans-serif; 
+}
+  ::-webkit-scrollbar {
+     width: 6px; height: 6px; 
+    }
+  ::-webkit-scrollbar-thumb { 
+    background: #cbd5e1; border-radius: 999px; 
+}
+
+
 h1{
     font-family: var(--font-quicksand);
 }
@@ -20,3 +31,4 @@ h1{
   background-position: center;
   background-repeat: no-repeat;
 }
+
