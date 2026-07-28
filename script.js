@@ -105,8 +105,8 @@ fetchProducts().then(res =>{
 
   res.products.forEach(product=>{
     document.querySelector('.products').innerHTML += `  <div>
-            <div class="">
-                <img src="${product.images}" alt="">
+            <div class="relative shadow-2xl">
+                <img src="${product.images}" alt=""><span class="absolute top-0 left-3 text-2xl"><i class="fa-regular fa-heart"></i></span>
             </div>
             <div class="pt-5 px-5 space-y-5">
                 <h3 class="font-bold">${product.title}</h3>
