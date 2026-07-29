@@ -51,13 +51,13 @@
             <p class="forgPass"><a href="#" class="text-blue-400 ">forgotten password?</a></p>
 
             <div class="flex items-center ">
-                <input type="checkbox" name="" id="check"><label for="check">Remind me</label>
+                <input type="checkbox" name="" id="checked"><label for="checked">Remind me</label>
             </div>
             </div>
-
+            <p class=" pt-2 text-amber-50">Don't have an account?<a href="#" class="text-blue-400 custSignUp">Signup</a></p>
         </div>
 
-            <input type="submit" value="Login" id="" class="w-full md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe] rounded-3xl bg-[#a71010ac] hover:bg-[#a71010ce] hover:transition">
+            <a href="custDashb.html"><input type="submit" value="Login" id="" class="w-full md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe] rounded-3xl bg-[#a71010ac] hover:bg-[#a71010ce] hover:transition"></a>
         </form>
        
     </div>
@@ -87,12 +87,13 @@
             <div class="flex items-center ">
                 <input type="checkbox" name="" id="check"><label for="check">Remind me</label>
             </div>
-             <p class="forgPass text-amber-50">Don't have an account?<a href="#" class="text-blue-400 ">Signup</a></p>
+            
             </div>
+             <p class=" pt-2 text-amber-50">Don't have an account?<a href="#" class="text-blue-400 adminSignUp">Signup</a></p>
 
         </div>
 
-            <input type="submit" value="Login" id="" class="w-full md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe] rounded-3xl bg-[#a71010ac] hover:bg-[#a71010ce] hover:transition">
+           <a href="adminDasb.html"> <input type="submit" value="Login" id="" class="w-full md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe] rounded-3xl bg-[#a71010ac] hover:bg-[#a71010ce] hover:transition"></a>
         </form>
        
     </div>
@@ -107,7 +108,7 @@
         <p class="text-red-200"><i>Dear valued Customer, enter your details to continue</i></p>
         </div>
         <form action="" class=" ml-[5%] space-y-10">
-            <input type="text" placeholder="Enter your name" class="md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]"><br>
+            <input type="text" placeholder="Enter your name" name"name" class="md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]"><br>
             
           <div>
               <input type="email" name="email" placeholder="Enter your email" class="md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]"><br>
@@ -115,20 +116,20 @@
           </div>
 
             <div>
-            <input type="password" name="pass" placeholder="Enter your password" class="md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]">
+            <input type="password" name="password" placeholder="Enter your password" class="md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe]">
             <p class="hidden text-red-500 italic text-sm">password must be 8-12 charcters long, (#,-,_,$) are also allowed</p>
 
              <div class="text-sm flex justify-center gap-5 md:gap-24">
-            <p class="forgPass"><a href="#" class="text-blue-400 ">Already have an account?</a></p>
+            <p class="haveAcctn"><a href="#" class="text-blue-400">Already have an account?</a></p>
 
             <div class="flex items-center ">
-                <input type="checkbox" name="" id="check"><label for="check">Remind me</label>
+                <input type="checkbox" name="" id="chek"><label for="chek">Remind me</label>
             </div>
             </div>
 
         </div>
 
-            <input type="submit" value="Login" id="" class="w-full md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe] rounded-3xl bg-[#a71010ac] hover:bg-[#a71010ce] hover:transition">
+            <input type="submit" value="Signup" id="" class="w-full md:w-[50%] border border-[#535151de] py-2 pl-2 outline outline-[#5d5b5bbe] rounded-3xl bg-[#a71010ac] hover:bg-[#a71010ce] hover:transition">
         </form>
        
     </div>
@@ -137,7 +138,7 @@
     <!-- Password recovery section -->
 
 
-    <div class="passRecovery hidden max-md:m-5 md:w-[50%] m-auto text-center shadow-2xl border-4 border-[#535151de] rounded-2xl p-5 bg-[#000000b7] space-y-10 ">
+    <div class="passRecovery hidden max-md:m-5 md:w-[50%] m-auto text-center shadow-2xl border-4 border-[#535151de] rounded-2xl p-5 bg-[#000000b7] space-y-10 mt-20">
         <div>
             <h1 class="font-black text-3xl md:text-5xl pb-2 text-red-500">Recover Password</h1>
         <p class="text-red-200"><i>Enter your email to recover your password</i></p>

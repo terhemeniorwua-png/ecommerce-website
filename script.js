@@ -10,6 +10,7 @@ let admin = document.querySelector('.admin');
 let customerLogin = document.querySelector('.customerLogin');
 let adminLogin = document.querySelector('.adminLogin');
 let customerSignUp = document.querySelector('.customerSignUp')
+let haveAcctn = document.querySelector('.haveAcctn')
 
 
 
@@ -24,13 +25,32 @@ let customerSignUp = document.querySelector('.customerSignUp')
 
 if(customer){
     customer.addEventListener('click', ()=>{
+
     if(customerLogin.classList.contains('hidden')){
         customerLogin.classList.remove('hidden')
         customerLogin.classList.add('block')
-        landingPage.classList.add('hidden')
+        landingPage.classList.add('hidden');
     }
 })
 }
+
+haveAcctn.addEventListener('click', ()=>{
+    //  if(customerSignUp.classList.contains('hidden')){
+        customerSignUp.classList.remove('block');
+        customerSignUp.classList.add('hidden');
+        customerLogin.classList.remove('hidden');
+        customerLogin.classList.add('block')
+    // }
+})
+
+document.querySelector('.custSignUp').addEventListener('click', ()=>{
+    if(customerSignUp.classList.contains('hidden')){
+        customerSignUp.classList.remove('hidden');
+        customer.classList.add('block');
+        customerLogin.classList.remove('block');
+        customerLogin.classList.add('hidden')
+    }
+})
 
 if(admin){
     admin.addEventListener('click', ()=>{
@@ -183,6 +203,16 @@ function displayProducts(prod) {
 
 
 //  searchBtn.addEventListener('click', searchFetched)
+
+const pattern ={
+    email: /^[\da-z]*@[a-z]{2,12}\.[a-z]{2,8}\.[a-z]{2,8}?$/,
+    
+}
+
+
+const custSignUp = () =>{
+
+}
 
 
 
