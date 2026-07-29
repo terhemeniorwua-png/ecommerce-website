@@ -14,6 +14,15 @@ let adminSearchBtn = document.querySelector('.adminMagLence');
  let searched = document.querySelector('.adminPdd');
 
 
+// Dialog box
+let dialogbox = document.querySelector('.dialog');
+let dialogHeading = document.querySelector('.heading');
+let dialogMssg = document.querySelector('.erromssg');
+let cancelBtn = document.querySelector('.cancelBtn');
+
+let modalActionBtn = document.querySelector('.actionBtn')
+let modalHeader = document.querySelector('.modalHeader')
+let productAddModal = document.querySelector('.addProductModal');
 
    fetchProducts().then( res =>{
     res.products.forEach(product=>{
@@ -30,19 +39,79 @@ let adminSearchBtn = document.querySelector('.adminMagLence');
                 <td class="py-3 px-6">
                   <div class="flex items-center gap-2">
                     <button class="w-7 h-7 rounded bg-blue-500 text-white flex items-center justify-center"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
-                    <button class="w-7 h-7 rounded bg-amber-500 text-white flex items-center justify-center"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                    <button class="w-7 h-7 rounded bg-red-500 text-white flex items-center justify-center"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                    <button class="update w-7 h-7 rounded bg-amber-500 text-white flex items-center justify-center"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    <button class="deleteProd w-7 h-7 rounded bg-red-500 text-white flex items-center justify-center"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
                   </div>
                 </td>
               </tr>
 
     `
+        async function removeProduct() {
+            try{
+                let fetPr = await fetch('https://dummyjson.com/products', {
+                method: 'DELETE'
+            })
+              dialogHeading.innerText = 'Success!';
+                 dialogMssg.innerText = "Delete product successful";
+                    dialogbox.showModal()
     
+                     cancelBtn.addEventListener('click', ()=>{
+
+                    dialogbox.close()
+                
+          }
+
+       
+
+     ) 
+            return fetPr
+            } catch(e){
+                  dialogHeading.innerText = 'Error!';
+    dialogMssg.innerText = "Failed to delete";
+    dialogbox.showModal()
+    
+     cancelBtn.addEventListener('click', ()=>{
+
+    dialogbox.close()
+          }
+
+       
+
+     ) 
+    }
+}
+
+
+    let deleteProd = document.querySelectorAll('.deleteProd');
+    deleteProd.forEach(del =>{
+        del.addEventListener('click', ()=>{
+
+            document.querySelector('.deletDialog').showModal()
+           document.querySelector('.deleteProdt').addEventListener('click', removeProduct)
+    })
+    })
+ document.querySelector('.canceModal').addEventListener('click', ()=>{
+             document.querySelector('.deletDialog').close()
+ })
+
+    let updatePro = document.querySelectorAll('.update')
+
+        updatePro.forEach(update =>{
+        update.addEventListener('click', ()=>{
+
+                modalActionBtn.innerText = 'Update Product';
+            modalHeader.innerText = 'Edit Product';
+            productAddModal.classList.remove('hidden')
+      
+
+    })
+
    })
 
 
 
 
+})
 })
 
 
@@ -65,17 +134,11 @@ let adminSearchBtn = document.querySelector('.adminMagLence');
 overlay.addEventListener('click', closeSidebar);
 
 
-// Dialog box
-let dialogbox = document.querySelector('.dialog');
-let dialogHeading = document.querySelector('.heading');
-let dialogMssg = document.querySelector('.erromssg');
-let cancelBtn = document.querySelector('.cancelBtn');
 
 // Search product
 
 
 let addProduct = document.querySelector('.addProduct');
-let productAddModal = document.querySelector('.addProductModal');
 let cancelAdd = document.querySelector('.cancelAdd');
 let saveProduct = document.querySelector('.saveProduct');
 let productInfo = document.querySelectorAll('.productInfo')
@@ -89,7 +152,10 @@ cancelAdd.addEventListener('click', ()=>{
     productAddModal.classList.add("hidden");
 })
 
-saveProduct.addEventListener('click', ()=>{
+
+
+
+const addProd =  ()=>{
   
 
     productInfo.forEach(field =>{
@@ -105,8 +171,64 @@ saveProduct.addEventListener('click', ()=>{
     dialogbox.close()
     return false;
     })
-}
-    })
+}else{
 
-})
+    let select = document.querySelector('.select')
+    let price = document.querySelector('.price');
+    let title = document.querySelector('.title');
+    let description = document.querySelector('.description');
+    let imgurl = document.querySelector('.imgurl')
+
+    let product ={
+        title,
+        price,
+        select,
+        description,
+        imgurl
+    }
+
+        async function addProduct() {
+          try{
+              let add =await fetch('https://dummyjson.com/products',{
+            method: 'PUT',
+             headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(product)
+        })
+        let res = await add.json()
+             dialogHeading.innerText = 'Success!';
+    dialogMssg.innerText = 'Product added successful';
+    dialogbox.showModal()
+    
+     cancelBtn.addEventListener('click', ()=>{
+
+    dialogbox.close()
+   
+    })
+        return res
+          } catch(e){
+                dialogHeading.innerText = 'Erroe!';
+    dialogMssg.innerText = "Failed to add";
+    dialogbox.showModal()
+    
+     cancelBtn.addEventListener('click', ()=>{
+
+    dialogbox.close()
+          }
+
+       
+
+     ) }
+    }
+    addProduct
+}})
+
+
+
+}
+saveProduct.addEventListener('click', addProd)
+
+
+
 

@@ -173,9 +173,9 @@ function displayProducts(prod) {
     prod.forEach(product => {
         products.innerHTML += `
             <div class="card">
-                <img src="${prod.thumbnail}" width="150">
-                <h3>${prod.title}</h3>
-                <p>$${prod.price}</p>
+                <img src="${product.thumbnail}" width="150">
+                <h3>${product.title}</h3>
+                <p>$${product.price}</p>
             </div>
         `;
     });
