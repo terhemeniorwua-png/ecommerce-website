@@ -138,12 +138,12 @@ fetchProducts().then(res =>{
    })
 
 
-    let html = ""
+  
 
   res.products.forEach(product=>{
    
     // if(products)
-    products.innerHTML  += `  <div>
+    products.innerHTML  += `  <div class="productItem">
             <div class="relative shadow-2xl">
                 <img src="${product.thumbnail}" alt=""><span class="absolute top-0 left-3 text-2xl"><i class="fa-regular fa-heart"></i></span>
             </div>
@@ -168,22 +168,28 @@ fetchProducts().then(res =>{
 // products.innerHTML = html
 });
 
-let searchBtn = document.querySelector('.searchBtn');
+let productItem = document.querySelectorAll('.productItem');
 let SearchInput = document.querySelector('.SearchInput');
-// let productTitle = 
 
+// let productTitle = 
 
 SearchInput.addEventListener('keyup', e =>{
     const inputValue = e.target.value.toLowerCase();
-    let productNames = document.querySelectorAll('h3 .title')
-    // productNames.forEach(product =>{
-    //     if(product.toLowerCase().includes(inputValue)){
-    //         console.log('Right')
-    //     }
-    // })
-    console.log(productNames.textContent.toLowerCase())
+
+    let productNames = document.querySelectorAll(' .title')
+
+    productNames.forEach(product =>{
+        const curItem = product.closest('.productItem')
+        if(product.innerText.toLowerCase().includes(inputValue)){
+            
+            curItem.style.display = 'block'
+        } else{
+            curItem.style.display = 'none'
+        }
+    })
+   
 })
-    
+    // 
 
 
 
