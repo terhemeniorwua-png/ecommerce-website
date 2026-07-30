@@ -20,6 +20,14 @@ let dialogHeading = document.querySelector('.heading');
 let dialogMssg = document.querySelector('.erromssg');
 let cancelBtn = document.querySelector('.cancelBtn');
 
+// close modal
+    cancelBtn.addEventListener('click', (e)=>{
+        e.preventDefault();
+    dialogbox.close()
+  }) 
+
+// Admin products display
+
 let modalActionBtn = document.querySelector('.actionBtn')
 let modalHeader = document.querySelector('.modalHeader')
 let productAddModal = document.querySelector('.addProductModal');
@@ -46,50 +54,8 @@ let productAddModal = document.querySelector('.addProductModal');
               </tr>
 
     `
-        async function removeProduct() {
-            try{
-                let fetPr = await fetch('https://dummyjson.com/products', {
-                method: 'DELETE'
-            })
-              dialogHeading.innerText = 'Success!';
-                 dialogMssg.innerText = "Delete product successful";
-                    dialogbox.showModal()
-    
-                     cancelBtn.addEventListener('click', ()=>{
 
-                    dialogbox.close()
-                
-          }
-
-       
-
-     ) 
-            return fetPr
-            } catch(e){
-                  dialogHeading.innerText = 'Error!';
-    dialogMssg.innerText = "Failed to delete";
-    dialogbox.showModal()
-    
-     cancelBtn.addEventListener('click', ()=>{
-
-    dialogbox.close()
-          }
-
-       
-
-     ) 
-    }
-}
-
-
-    let deleteProd = document.querySelectorAll('.deleteProd');
-    deleteProd.forEach(del =>{
-        del.addEventListener('click', ()=>{
-
-            document.querySelector('.deletDialog').showModal()
-           document.querySelector('.deleteProdt').addEventListener('click', removeProduct)
-    })
-    })
+   
  document.querySelector('.canceModal').addEventListener('click', ()=>{
              document.querySelector('.deletDialog').close()
  })
@@ -112,6 +78,7 @@ let productAddModal = document.querySelector('.addProductModal');
 
 
 })
+
 })
 
 
@@ -155,80 +122,131 @@ cancelAdd.addEventListener('click', ()=>{
 
 
 
-const addProd =  ()=>{
-  
+// Add a product
 
-    productInfo.forEach(field =>{
-          let value = field.value.trim();
-           if(value === ''){
+     async function addProduc(method, elements) {
+          try{
+              let add = await fetch('https://dummyjson.com/products/add',{
+            method: String(method),
+             headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(elements)
+        })
 
-         dialogHeading.innerText = 'Error';
-    dialogMssg.innerText = 'Fill in the fields';
-    dialogbox.showModal()
+        let res = await add.json()
+console.log('Hi')
+        if(!add.ok){
+          throw new Error('Failed')
+        }
+            return res
+          }catch(e){
+                dialogHeading.innerText = 'Error!';
+                dialogMssg.innerText = e.message;
+                dialogbox.showModal()
     
-     cancelBtn.addEventListener('click', ()=>{
+                cancelBtn.addEventListener('click', ()=>{
 
     dialogbox.close()
-    return false;
-    })
-}else{
+          }
+        ) }
+}
+    
+// addProduc('POST')
 
-    let select = document.querySelector('.select')
+        let select = document.querySelector('.select')
     let price = document.querySelector('.price');
     let title = document.querySelector('.title');
     let description = document.querySelector('.description');
     let imgurl = document.querySelector('.imgurl')
 
-    let product ={
-        title,
-        price,
-        select,
-        description,
-        imgurl
-    }
 
-        async function addProduct() {
-          try{
-              let add =await fetch('https://dummyjson.com/products',{
-            method: 'PUT',
-             headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(product)
-        })
-        let res = await add.json()
-             dialogHeading.innerText = 'Success!';
-    dialogMssg.innerText = 'Product added successful';
-    dialogbox.showModal()
-    
-     cancelBtn.addEventListener('click', ()=>{
 
-    dialogbox.close()
+
+const addProd = async (e)=>{
+  e.preventDefault()
+ 
+    let hasEmptyField = false;
+
+    productInfo.forEach(input => {
+        if (input.value.trim() === "") {
+            hasEmptyField = true;
+        }
+    });
+
+    if (hasEmptyField) {
+        dialogHeading.innerText = "Error";
+        dialogMssg.innerText = "Fill in all the fields";
+        dialogbox.showModal();
+
+        setTimeout(() => {
+            dialogbox.close();
+        }, 2000);
+
+        return;
+    } else{
+
    
-    })
-        return res
-          } catch(e){
-                dialogHeading.innerText = 'Erroe!';
-    dialogMssg.innerText = "Failed to add";
-    dialogbox.showModal()
-    
-     cancelBtn.addEventListener('click', ()=>{
-
-    dialogbox.close()
-          }
-
-       
-
-     ) }
+    let product ={
+        title:title.value.trim(),
+        price: Number(price.value.trim()),
+        category:select.value.trim(),
+        description:description.value.trim(),
+        imgurl:imgurl.value.trim()
     }
-    addProduct
-}})
-
-
-
+   await addProduc('POST', product)
+      }
+       productInfo.forEach(input => {
+        input.value = ''
+    });
 }
+
 saveProduct.addEventListener('click', addProd)
 
 
 
 
+    // Delet a product
+
+
+
+
+document.addEventListener('DOMContentLoaded', ()=>{
+
+    let deleteProd = document.querySelectorAll('.deleteProd');
+
+  console.log(deleteProd)
+
+    deleteProd.forEach(del =>{
+      console.log('Hi')
+        del.addEventListener('click', ()=>{
+          console.log('Hi')
+
+    //         document.querySelector('.deletDialog').showModal()
+    //        document.querySelector('.deleteProdt').addEventListener('click', removeProduct)
+    })
+    })
+})
+
+  async function removeProduct() {
+            try{
+                let fetPr = await fetch('https://dummyjson.com/products/delete', {
+                method: 'DELETE'
+            })
+              // dialogHeading.innerText = 'Success!';
+              //    dialogMssg.innerText = "Delete product successful";
+              //       dialogbox.showModal()
+    
+              //        cancelBtn.addEventListener('click', ()=>{
+
+              //       dialogbox.close()
+          // }
+    //  )   
+            return fetPr
+    } catch(e){
+       dialogHeading.innerText = 'Error!';
+    dialogMssg.innerText = "Failed to delete";
+    dialogbox.showModal()
+   
+    }
+}

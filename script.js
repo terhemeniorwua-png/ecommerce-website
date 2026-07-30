@@ -11,6 +11,7 @@ let customerLogin = document.querySelector('.customerLogin');
 let adminLogin = document.querySelector('.adminLogin');
 let customerSignUp = document.querySelector('.customerSignUp')
 let haveAcctn = document.querySelector('.haveAcctn')
+let custSignUp = document.querySelector('.custSignUp')
 
 
 
@@ -34,7 +35,8 @@ if(customer){
 })
 }
 
-haveAcctn.addEventListener('click', ()=>{
+if(haveAcctn){
+    haveAcctn.addEventListener('click', ()=>{
     //  if(customerSignUp.classList.contains('hidden')){
         customerSignUp.classList.remove('block');
         customerSignUp.classList.add('hidden');
@@ -42,8 +44,10 @@ haveAcctn.addEventListener('click', ()=>{
         customerLogin.classList.add('block')
     // }
 })
+}
 
-document.querySelector('.custSignUp').addEventListener('click', ()=>{
+if(custSignUp){
+    custSignUp.addEventListener('click', ()=>{
     if(customerSignUp.classList.contains('hidden')){
         customerSignUp.classList.remove('hidden');
         customer.classList.add('block');
@@ -51,6 +55,7 @@ document.querySelector('.custSignUp').addEventListener('click', ()=>{
         customerLogin.classList.add('hidden')
     }
 })
+}
 
 if(admin){
     admin.addEventListener('click', ()=>{
@@ -122,6 +127,7 @@ fetchProducts().then(res =>{
    res.products.forEach(product =>{
    if(!uniqueProduct.has(product.category)){
     uniqueProduct.add(product.category)
+    if(categories)
       categories.innerHTML += `
     <li class="bg-gray-200 p-2 rounded-xl px-5">${product.category}</li>
     `
@@ -131,6 +137,7 @@ fetchProducts().then(res =>{
 
 
   res.products.forEach(product=>{
+    if(products)
     products.innerHTML += `  <div>
             <div class="relative shadow-2xl">
                 <img src="${product.thumbnail}" alt=""><span class="absolute top-0 left-3 text-2xl"><i class="fa-regular fa-heart"></i></span>
@@ -206,13 +213,11 @@ function displayProducts(prod) {
 
 const pattern ={
     email: /^[\da-z]*@[a-z]{2,12}\.[a-z]{2,8}\.[a-z]{2,8}?$/,
-    
+    password: /^[\w#-\$]{8,12}$/
 }
 
+//password must be 8-12 charcters long, (#,-,_,$) are also allowed
 
-const custSignUp = () =>{
-
-}
 
 
 
