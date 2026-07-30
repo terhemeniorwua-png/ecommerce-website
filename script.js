@@ -211,14 +211,12 @@ function displayProducts(prod) {
 
 //  searchBtn.addEventListener('click', searchFetched)
 
-const pattern ={
-    email: /^[\da-z]*@[a-z]{2,12}\.[a-z]{2,8}\.[a-z]{2,8}?$/,
-    password: /^[\w#-\$]{8,12}$/
-}
+// const pattern ={
+//     email: /^[\da-z]*@[a-z]{2,12}\.[a-z]{2,8}\.[a-z]{2,8}?$/,
+//     password: /^[\w#-\$]{8,12}$/
+// }
 
 //password must be 8-12 charcters long, (#,-,_,$) are also allowed
-
-
 
 
 
