@@ -73,9 +73,12 @@ let deletDialog =   document.querySelector('.deletDialog')
 
   async function removeProduct(id) {
             try{
-                let fetPr = await fetch(`https://dummyjson.com/products/delete/${id}`, {
+                let fetPr = await fetch(`https://dummyjson.com/products/${id}`, {
                 method: 'DELETE'
             })
+
+             const data = await fetPr.json();
+             return data
               // dialogHeading.innerText = 'Success!';
               //    dialogMssg.innerText = "Delete product successful";
               //       dialogbox.showModal()
@@ -85,7 +88,6 @@ let deletDialog =   document.querySelector('.deletDialog')
               //       dialogbox.close()
           // }
     //  )   
-            return fetPr
     } catch(e){
        dialogHeading.innerText = 'Error!';
     dialogMssg.innerText = e.message;
@@ -101,7 +103,7 @@ let deletDialog =   document.querySelector('.deletDialog')
   adminProduct.addEventListener('click', (e)=>{
 
     let btn = e.target.closest('.deleteProd')
-    
+
     if(!btn) return;
       productToDelete = btn.dataset.id
 
