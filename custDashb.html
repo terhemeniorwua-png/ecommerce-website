@@ -15,7 +15,7 @@
 
 
     <!-- Desktop Header -->
-<header class="max-md: bg-white rounded-2xl shadow-md px-8 py-4 flex items-center justify-between">
+<header class="max-md: bg-white rounded-2xl shadow-md px-8 py-2 flex items-center justify-between">
 
     <!-- Logo -->
     <div class="flex items-center gap-3">
@@ -57,7 +57,7 @@
         <div class="flex items-center gap-2 relative cursor-pointer"> 
 
             <!-- cart quantity -->
-           <span class="absolute -top-6 left-10 p-3 py-4 h-5 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center">
+           <span class="cartCount absolute -top-6 left-10 p-3 py-4 h-5 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center">
                0
             </span>
 
@@ -90,7 +90,7 @@
 <main>
 
     <div class="">
-        <ul class="flex justify-center items-center gap-10 pt-5 text-xl nav">
+        <ul class="flex justify-center items-center gap-10 pt-5 text-lg nav">
             <li class="bg-gray-200 p-2 rounded-xl px-5">All</li>
         </ul>
     </div>
@@ -114,6 +114,7 @@
     <section>
         <h1 class="font-black text-3xl pb-5">Popular Products</h1>
      <div class="products md:grid grid-cols-4 items-center md:gap-10"></div>
+     <div class="pagination mt-5 flex justify-center gap-10"></div>
     </section>
 
 

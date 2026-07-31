@@ -16,13 +16,6 @@ let custSignUp = document.querySelector('.custSignUp')
 
 
 
-
-// logo.addEventListener('click', () => {
-//     landingPage.classList.remove('hidden');
-//     landingPage.classList.add('block');
-// });
-
-
 // Display of different logins
 
 if(customer){
@@ -95,6 +88,84 @@ let categories = document.querySelector('.nav');
 
 
 
+
+const ITEMS_PER_PAGE = 8;
+let currentPage = 1;
+let allProducts = [];
+
+
+const pagination = document.querySelector(".pagination");
+
+function createPagination(totalItems,currentPage,container){
+
+    pagination.innerHTML = "";
+
+    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+    for(let i=1;i<=totalPages;i++){
+
+        pagination.innerHTML += `
+        <button
+            class="pageBtn px-3 py-1 border"
+            data-page="${i}">
+            ${i}
+        </button>
+        `;
+    }
+
+    pagination.querySelectorAll(".pageBtn").forEach(btn=>{
+
+        btn.addEventListener("click",()=>{
+
+            displayProducts(
+                allProducts,
+                container,
+                Number(btn.dataset.page)
+            );
+
+        });
+
+    });
+
+}
+
+
+
+function displayProducts(data, container, page = 1){
+
+    container.innerHTML = "";
+
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+
+    const paginatedProducts = data.slice(start, end);
+
+    paginatedProducts.forEach(product=>{
+
+        container.innerHTML += `
+        <div class="productItem border rounded-lg p-4">
+
+            <img src="${product.thumbnail}"
+                 class="w-full h-48 object-cover rounded">
+
+            <h3 class="font-bold mt-3 title">${product.title}</h3>
+
+            <p>$${product.price}</p>
+
+            <button
+                class="addCart bg-blue-600 text-white px-4 py-2 rounded mt-3"
+                data-id="${product.id}">
+                Add To Cart
+            </button>
+
+        </div>
+        `;
+    });
+
+    createPagination(data.length, page, container);
+}
+
+
 // saving categories in the dashbord
 
  export const fetchProducts = async ()=>{
@@ -123,6 +194,8 @@ return reponse
 
 let products = document.querySelector('.products')
 
+
+
 const uniqueProduct = new Set()
 
 
@@ -138,49 +211,107 @@ fetchProducts().then(res =>{
    }
    })
 
+//    display product
 
+fetchProducts().then(res=>{
+
+    allProducts = res.products;
+
+    displayProducts(allProducts, products);
+
+});
   
 
-  res.products.forEach(product=>{
+
+//add to cart
+
+
+
+const cart = [];
+
+function addToCart(id){
+
+    const product = allProducts.find(item=>item.id == id);
+
+    if(!product) return;
+
+    const exists = cart.find(item=>item.id == id);
+
+    if(exists){
+
+        exists.quantity++;
+
+    }else{
+
+        cart.push({
+
+            ...product,
+            quantity:1
+
+        });
+
+    }
+
+    // console.log(cart);
+
+}
+
+let cartCount = document.querySelector('.cartCount')
+
+products.addEventListener("click",(e)=>{
+
+    const btn = e.target.closest(".addCart");
+
+    if(!btn) return;
+
+    addToCart(btn.dataset.id);
+
+    cartCount.innerText = cart.length
+
+});
+
+
+
+//   res.products.forEach(product=>{
    
-    // if(products)
-    products.innerHTML  += `  <div class="productItem">
-            <div class="relative shadow-2xl">
-                <img src="${product.thumbnail}" alt=""><span class="absolute top-0 left-3 text-2xl"><i class="fa-regular fa-heart"></i></span>
-            </div>
-            <div class="pt-5 px-5 space-y-5">
-                <h3 class="title font-bold">${product.title}</h3>
-                <div class="flex items-center gap-2">
-                <i class="fa-regular fa-star"></i>
-                  <span>${product.rating}</span>
-                </div>
+//     // if(products)
+//     products.innerHTML  += `  <div class="productItem border border-gray-200 rounded-lg p-2">
+//             <div class="relative ">
+//                 <img src="${product.thumbnail}" alt=""><span class="absolute top-0 left-3 text-2xl"><i class="fa-regular fa-heart"></i></span>
+//             </div>
+//             <div class="pt-5 px-5 space-y-5 pb-5 shadow-2xl">
+//                 <h3 class="title font-bold">${product.title}</h3>
+//                 <div class="flex items-center gap-2">
+//                 <i class="fa-regular fa-star"></i>
+//                   <span>${product.rating}</span>
+//                 </div>
               
-                <p class="text-3xl inline pr-20"><b>$${product.price}</b></p>
-                <span class="text-green-400">${product.availabilityStatus}</span>
-               <div class="flex itmes-center justify-center gap-1">
-     <button
-        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl flex-1 transition">
+//                 <p class="text-3xl inline pr-20"><b>$${product.price}</b></p>
+//                 <span class="text-green-400">${product.availabilityStatus}</span>
+//                <div class="flex itmes-center justify-center gap-1">
+//      <button
+//         class="bg-blue-600 hover:bg-blue-700 mt-5 text-sm text-white font-semibold py-2 rounded-xl flex-1 transition" data-id=${product.id}>
 
-            <i class="fa-solid fa-cart-shopping"></i>
+//             <i class="fa-solid fa-cart-shopping"></i>
 
-            Add To Cart
+//             Add To Cart
 
-        </button>
+//         </button>
 
-        <button
-        class="bg-blue-100 hover:bg-blue-200 text-blue-700 font-semibold py-4 rounded-xl flex-1 transition">
+//         <button data-id=${product.id}
+//         class="bg-blue-100 hover:bg-blue-200 mt-5 text-sm text-blue-700 font-semibold py-2 rounded-xl flex-1 transition">
 
-            Buy Now
+//             Buy Now
 
-        </button>
-               </div>
-            </div>
-        </div>
-        `
+//         </button>
+//                </div>
+//             </div>
+//         </div>
+//         `
 
-        //  <button data-id=${product.id} class="detailsBtn bg-blue-600 w-full rounded-2xl m-auto py-2 text-white font-bold"><a href="#">View Details</a></button>
+//         //  <button data-id=${product.id} class="detailsBtn bg-blue-600 w-full rounded-2xl m-auto py-2 text-white font-bold"><a href="#">View Details</a></button>
          
-   })
+//    })
 // products.innerHTML = html
 });
 
@@ -188,7 +319,8 @@ fetchProducts().then(res =>{
 let SearchInput = document.querySelector('.SearchInput');
 let hero = document.querySelector('.hero')
 
-// let productTitle = 
+
+// search product
 
 const searchProduct =  e =>{
     const inputValue = e.target.value.toLowerCase();
@@ -228,13 +360,3 @@ products.addEventListener('click', e=>{
      console.log(clickedId)
     
 })
-
-
-
-
-
-
-
-
-
-  

@@ -165,7 +165,7 @@ cancelAdd.addEventListener('click', ()=>{
  
     
 // function to add a product
-const addProd = async (id, e)=>{
+const addProd = async (e)=>{
   e.preventDefault()
  
     let hasEmptyField = false;
@@ -203,7 +203,7 @@ const addProd = async (id, e)=>{
     });
 }
 
-saveProduct.addEventListener('click', addProd)
+
 
 
 
@@ -232,41 +232,12 @@ saveProduct.addEventListener('click', addProd)
     }
 }
 
-  // delete and update eventsLinstener
-
-  let productToDelete = null;
-
-  adminProduct.addEventListener('click', (e)=>{
-// Delete admin's product eventlistener
-    let btn = e.target.closest('.deleteProd')
-    let btn2 = e.target.closest('.update')
-    // if(!btn || !btn2) return;
-     if(btn){
-       productToDelete = btn.dataset.id
-
-    deletDialog.showModal()
-     } if(btn2){
-
-      // update a product
-
-      productToDelete = btn2.dataset.id;
-      modalHeader.innerText = 'Edit Product';
-     
-      if(productAddModal.classList.contains('hidden')){
-        productAddModal.classList.remove('hidden');
-        // productAddModal.\
-      }
-       
-         }
-    
-  })
-
 
   // function to update a product
 
 
 const updateProd = async (id)=>{
-  e.preventDefault()
+  // e.preventDefault()
  
     let hasEmptyField = false;
 
@@ -287,7 +258,13 @@ const updateProd = async (id)=>{
 
         return;
     } else{
-
+  let product ={
+        title:title.value.trim(),
+        price: Number(price.value.trim()),
+        category:select.value.trim(),
+        description:description.value.trim(),
+        imgurl:imgurl.value.trim()
+    }
    
    await addProduc('PUT',product, id)
       }
@@ -296,18 +273,54 @@ const updateProd = async (id)=>{
     });
 }
 
-  // if(updatePro)
-saveProduct.addEventListener('click', async ()=>{
-
-        productAddModal.classList.add('hidden')
-    
-
-  await updateProd(productToDelete)
-
-})
 
 
+  // delete and update eventsLinstener
 
+  let productToDelete = null;
+let isEditing = false;
+let editingId = null;
+
+
+  adminProduct.addEventListener('click', (e)=>{
+// // Delete admin's product eventlistener
+    let btn = e.target.closest('.deleteProd')
+    let btn2 = e.target.closest('.update')
+//     // if(!btn || !btn2) return;
+     if(btn){
+       productToDelete = btn.dataset.id
+
+    deletDialog.showModal()
+     } 
+    //  btn2 = e.target.closest('.update');
+
+if (btn2) {
+    isEditing = true;
+    editingId = btn2.dataset.id;
+
+    modalHeader.innerText = 'Edit Product';
+    productAddModal.classList.remove('hidden');
+}
+  })
+
+
+
+
+
+
+
+saveProduct.addEventListener('click', async (e) => {
+    if (isEditing) {
+        await updateProd(editingId);
+
+        isEditing = false;
+        editingId = null;
+    } else {
+        await addProd(e);
+    }
+
+    productAddModal.classList.add('hidden');
+});
 
 // delete product
 
