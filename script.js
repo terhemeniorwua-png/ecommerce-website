@@ -1,6 +1,7 @@
 
 // call html elements
 
+
 let logo = document.querySelector('.img')
 let customer = document.querySelector('.customer');
 let forgPass = document.querySelectorAll('.forgPass');
@@ -96,7 +97,7 @@ let categories = document.querySelector('.nav');
 
 // saving categories in the dashbord
 
-const fetchProducts = async ()=>{
+ export const fetchProducts = async ()=>{
     try{
 
     let fetchApi =await fetch('https://dummyjson.com/products');
@@ -150,20 +151,35 @@ fetchProducts().then(res =>{
             <div class="pt-5 px-5 space-y-5">
                 <h3 class="title font-bold">${product.title}</h3>
                 <div class="flex items-center gap-2">
-                <i class="fa-regular fa-star text-amber-500"></i>
-                <i class="fa-regular fa-star text-amber-500"></i>
-                <i class="fa-regular fa-star text-amber-500"></i>
-                <i class="fa-regular fa-star text-amber-500"></i>
+                <i class="fa-regular fa-star"></i>
                   <span>${product.rating}</span>
                 </div>
               
                 <p class="text-3xl inline pr-20"><b>$${product.price}</b></p>
                 <span class="text-green-400">${product.availabilityStatus}</span>
-                <button class="bg-blue-600 w-full rounded-2xl m-auto py-2 text-white font-bold"><a href="product.html">View Details</a></button>
+               <div class="flex itmes-center justify-center gap-1">
+     <button
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl flex-1 transition">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            Add To Cart
+
+        </button>
+
+        <button
+        class="bg-blue-100 hover:bg-blue-200 text-blue-700 font-semibold py-4 rounded-xl flex-1 transition">
+
+            Buy Now
+
+        </button>
+               </div>
             </div>
         </div>
         `
-        // console.log(products)
+
+        //  <button data-id=${product.id} class="detailsBtn bg-blue-600 w-full rounded-2xl m-auto py-2 text-white font-bold"><a href="#">View Details</a></button>
+         
    })
 // products.innerHTML = html
 });
@@ -195,69 +211,23 @@ const searchProduct =  e =>{
 if(SearchInput)
 
 SearchInput.addEventListener('keyup', searchProduct)
-    // 
+  
 
+// View Details function
 
+let clickedId= null
 
+if(products)
+products.addEventListener('click', e=>{
 
+    const btnClicked = e.target.closest('.products');
+    // const curItem = e.closest('.productItem');
 
-//     const inputValue = SearchInput.value.toLowerCase;
-
-//     Array.from(productTitle).forEach(product=>{
-
-//          if(inputValue !== product[productTitle].toLowerCase){
-//         console.log('Nothing match')
-//     } else{
-//         console.log('product')
-//     }
-//     })
-
-//  }
-// // searchBtn.addEventListener('click', searchFetched)
-
-
-
-
-//     let value = SearchInput.value.trim()
-//     if(value === '')return;
-
-//     try{
-//         let fetchRequest = await fetch(`https://dummyjson.com/products/search?=${value}`);
-//         let result = await fetchRequest.json()
-//       displayProducts(result.product)
-
-//     } catch(e){
-//     dialogHeading.innerText = 'Error';
-//     dialogMssg.innerText = e.message;
-//     dialogbox.showModal()
+    if(!btnClicked) return;
+     clickedId = btnClicked.dataset.id;
+     console.log(clickedId)
     
-//      cancelBtn.addEventListener('click', ()=>{
-
-//     dialogbox.close()
-//     })
-// }
-    
-// }
-
-
-// function displayProducts(prod) {
-//     products.innerHTML = "";
-
-//     if (prod.length === 0) {
-//         productsContainer.innerHTML = "<h2>No product found.</h2>";
-//         return;
-//     }
-
-//     prod.forEach(product => {
-//         products.innerHTML += `
-//             <div class="card">
-//                 <img src="${product.thumbnail}" width="150">
-//                 <h3>${product.title}</h3>
-//                 <p>$${product.price}</p>
-//             </div>
-//         `;
-//     });
-// }
+})
 
 
 
@@ -266,16 +236,5 @@ SearchInput.addEventListener('keyup', searchProduct)
 
 
 
-//  searchBtn.addEventListener('click', searchFetched)
 
-// const pattern ={
-//     email: /^[\da-z]*@[a-z]{2,12}\.[a-z]{2,8}\.[a-z]{2,8}?$/,
-//     password: /^[\w#-\$]{8,12}$/
-// }
-
-//password must be 8-12 charcters long, (#,-,_,$) are also allowed
-
-
-
-export{fetchProducts}
   
