@@ -8,7 +8,7 @@ const sidebar = document.getElementById('sidebar');
 
   // admin parts
 
-  let searchInput = document.querySelector('.SearchInput');
+  // let searchInput = document.querySelector('.SearchInput');
 let adminPdd = document.querySelectorAll('.adminPddName');
 let adminSearchBtn = document.querySelector('.adminMagLence');
  let adminProduct = document.querySelector('.adminPdd');
@@ -45,7 +45,7 @@ let deletDialog =   document.querySelector('.deletDialog')
         <tr class="prod">
                   <td class="py-3 px-6 flex items-center gap-3">
                     <div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-lg"><img src="${product.thumbnail}" alt="${product.title}"></div>
-                    <span class="font-medium text-slate-700">${product.title}</span>
+                    <span class="font-medium text-slate-700 title">${product.title}</span>
                   </td>
                   <td class="py-3 px-6 text-slate-600">$${product.price}</td>
                   <td class="py-3 px-6 text-slate-600 adminPddName">${product.category}</td>
@@ -74,13 +74,41 @@ let deletDialog =   document.querySelector('.deletDialog')
   })
  let updatePro = document.querySelector('.update')
 
+
+
+
 // Search product
+
+const searchProduct =  e =>{
+    const inputValue = e.target.value.toLowerCase();
+
+    let productNames = document.querySelectorAll(' .title')
+
+    productNames.forEach(product =>{
+        const curItem = product.closest('.prod')
+        if(product.innerText.toLowerCase().includes(inputValue)){
+            
+            curItem.style.display = 'block'
+        } else{
+            curItem.style.display = 'none'
+        }
+    })
+}
+
+let Search = document.querySelector('.Search')
+Search.addEventListener('keyup', searchProduct)
+
+
+
+
+
 
 
 let addProduct = document.querySelectorAll('.addProduct');
 let cancelAdd = document.querySelector('.cancelAdd');
 let saveProduct = document.querySelector('.saveProduct');
 let productInfo = document.querySelectorAll('.productInfo')
+
 
 addProduct.forEach(btn =>{
   btn.addEventListener('click', ()=>{
@@ -297,6 +325,8 @@ saveProduct.addEventListener('click', async ()=>{
                       dialogbox.close()
                     }, 2000)  
 })
+
+
 
 
 // side bar annimations

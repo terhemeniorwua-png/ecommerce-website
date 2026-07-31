@@ -168,12 +168,13 @@ fetchProducts().then(res =>{
 // products.innerHTML = html
 });
 
-let productItem = document.querySelectorAll('.productItem');
+// let productItem = document.querySelectorAll('.productItem');
 let SearchInput = document.querySelector('.SearchInput');
+let hero = document.querySelector('.hero')
 
 // let productTitle = 
 
-SearchInput.addEventListener('keyup', e =>{
+const searchProduct =  e =>{
     const inputValue = e.target.value.toLowerCase();
 
     let productNames = document.querySelectorAll(' .title')
@@ -181,14 +182,19 @@ SearchInput.addEventListener('keyup', e =>{
     productNames.forEach(product =>{
         const curItem = product.closest('.productItem')
         if(product.innerText.toLowerCase().includes(inputValue)){
+           hero.style.display = ''
             
             curItem.style.display = 'block'
         } else{
             curItem.style.display = 'none'
+             hero.style.display = 'none'
         }
     })
    
-})
+}
+if(SearchInput)
+
+SearchInput.addEventListener('keyup', searchProduct)
     // 
 
 
