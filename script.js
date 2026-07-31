@@ -150,13 +150,28 @@ function displayProducts(data, container, page = 1){
 
             <h3 class="font-bold mt-3 title">${product.title}</h3>
 
+              <div class="flex items-center gap-2 justify-between"> 
+              
             <p>$${product.price}</p>
 
+                  <div class="flex gap-2 items-center">  
+                  <i class="fa-regular fa-star text-amber-500"></i>
+                  <span>${product.rating}</span>
+                  </div>
+                </div>
+
+            <div class="grid grid-cols-2 items-center gap-5">
             <button
                 class="addCart bg-blue-600 text-white px-4 py-2 rounded mt-3"
                 data-id="${product.id}">
                 Add To Cart
             </button>
+             <button
+                class="buyPro bg-blue-600 text-white px-4 py-2 rounded mt-3"
+                data-id="${product.id}">
+                Buy
+            </button>
+            </div>
 
         </div>
         `;
@@ -281,10 +296,7 @@ products.addEventListener("click",(e)=>{
 //             </div>
 //             <div class="pt-5 px-5 space-y-5 pb-5 shadow-2xl">
 //                 <h3 class="title font-bold">${product.title}</h3>
-//                 <div class="flex items-center gap-2">
-//                 <i class="fa-regular fa-star"></i>
-//                   <span>${product.rating}</span>
-//                 </div>
+              
               
 //                 <p class="text-3xl inline pr-20"><b>$${product.price}</b></p>
 //                 <span class="text-green-400">${product.availabilityStatus}</span>
@@ -357,6 +369,6 @@ products.addEventListener('click', e=>{
 
     if(!btnClicked) return;
      clickedId = btnClicked.dataset.id;
-     console.log(clickedId)
+    //  console.log(clickedId)
     
 })

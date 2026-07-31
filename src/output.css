@@ -495,6 +495,9 @@
   .items-stretch {
     align-items: stretch;
   }
+  .justify-around {
+    justify-content: space-around;
+  }
   .justify-between {
     justify-content: space-between;
   }
@@ -920,6 +923,9 @@
   .text-amber-50 {
     color: var(--color-amber-50);
   }
+  .text-amber-500 {
+    color: var(--color-amber-500);
+  }
   .text-blue-400 {
     color: var(--color-blue-400);
   }
@@ -964,6 +970,9 @@
   }
   .text-red-200 {
     color: var(--color-red-200);
+  }
+  .text-red-300 {
+    color: var(--color-red-300);
   }
   .text-red-500 {
     color: var(--color-red-500);
